@@ -88,8 +88,6 @@ def simulate_discount_change(df_in, new_discount_cap):
     predicted_margin = lasso.predict(X_sim)
 
     # Calculate sales impact from discount change
-    # When discount decreases (discount_change < 0), sales should decrease
-    # elasticity is typically negative, so this works correctly
     sales_multiplier = -elasticity * discount_change
     predicted_sales = np.where(df["Discount"] > new_discount_cap,df["Sales"] * sales_multiplier,df["Sales"]                 )
 
